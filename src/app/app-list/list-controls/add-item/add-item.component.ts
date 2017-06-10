@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AppState} from "../../../app.store";
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'add-item',
@@ -7,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit() {
   }
 
   addItem(value){
-    alert(value);
+    this.ngRedux.dispatch({
+      type: "ADD_ITEM",
+      payload: value
+    });
   }
 }
